@@ -27,8 +27,8 @@ var horizonNeareningFactor = 1; // Amount by which nearer horizons get lower
 //drawSky();
 drawHills();
 drawFooterText();
-drawTitleText();
 drawContextFrame();
+drawTitleText();
 
 // ******************************************************************************
 //                              FUNCTIONS
@@ -103,28 +103,19 @@ function drawFooterText() {
 	context.fillStyle = "white";
 	context.textAlign = "center";
 	context.font = "16px Georgia";
-	context.fillText("Created by @rocketbootkid", canvasDimensions.mid_x, canvasDimensions.height - 40);
-	
-}
-
-function drawTitleText() {
-	
-	context.beginPath();
-	context.fillStyle = "white";
-	context.font = "50px Georgia";
-	context.fillText("Personomicon", canvasDimensions.mid_x, canvasDimensions.height - 100);
+	context.fillText("Created by @rocketbootkid. Some data pulled from randomuser.me", canvasDimensions.mid_x, canvasDimensions.height - 40);
 	
 }
 
 function drawContextFrame() {
 
 	context.beginPath();
-	context.fillStyle = "#ddd";
-	context.fillRect(canvasDimensions.mid_x - 500, 30, 1000, canvasDimensions.height - 200);
+	context.fillStyle = "#222";
+	context.fillRect(canvasDimensions.mid_x - 500, 30, 1000, canvasDimensions.height - 100);
 	
 	context.beginPath();
 	context.fillStyle = "white";
-	context.fillRect(canvasDimensions.mid_x - 490, 40, 980, canvasDimensions.height - 220);
+	context.fillRect(canvasDimensions.mid_x - 490, 40, 980, canvasDimensions.height - 120);
 	
 	contentDiv = document.getElementById("content").style;
 	contentDiv.left = canvasDimensions.mid_x - 472;
@@ -132,4 +123,15 @@ function drawContextFrame() {
 	contentDiv.width = 960;
 	contentDiv.height = canvasDimensions.height - 240;
 	
+}
+
+function drawTitleText() {
+	
+	context.beginPath();
+	context.textAlign = "center";
+	context.translate(canvasDimensions.mid_x - 520, 350);
+	context.rotate(270*Math.PI/180);
+	context.fillStyle = "black";
+	context.font = "100px Georgia";
+	context.fillText("Personomicon", 0, 0);	
 }
