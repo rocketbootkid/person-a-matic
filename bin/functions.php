@@ -3,42 +3,70 @@
 function displayPersona() {
 
 	$details = getUserDetails();
+	$title = $details[5];
 	
-	echo "<img src='" . $details[4] . "'></img><p>";
-	echo "<font face='Georgia' size=6>" . $details[5] . " " . $details[1] . " " . $details[2] . "</font><p>";
-	//echo "<font face='Georgia' size=6>" . generateName() . "</font><p>";
+	echo "<div class='image'><img src='" . $details[4] . "' align=center></img></span></div>";
 	
-	// DOB / Age
-	$dob_age = generateDOBAge();
-	echo "<font face='Georgia' size=4>Born: " . $dob_age[0] . " (" . $dob_age[1] . ")</font><p>";
+	echo "<div class='section'>";
+		echo "<div class='line name'>" . $title . " " . $details[1] . " " . $details[2] . "</div>";
+		//echo "<font face='Georgia' size=6>" . generateName() . "</font><p>";
+
+		// DOB / Age
+		$dob_age = generateDOBAge();
+		echo "<div class='line'><div class='linetitle'>Born</div><div class='linecontent'>" . $dob_age[0] . " (" . $dob_age[1] . ")</div></div>";
+		
+		// Nationality
+		echo "<div class='line'><div class='linetitle'>Nationality</div><div class='linecontent'><img src='images/flags/" . strtolower($details[3]) . ".png' style='margin-top: -5px;'> " . getNationality($details[3]) . "</div></div>";	
+		
+	echo "</div>";
 	
-	// Nationality
-	echo "<img src='images/flags/" . strtolower($details[3]) . ".png' style='padding-top: 0.3em;'> <font face='Georgia' size=4 style='padding-top: 0em;'>" . getNationality($details[3]) . "</font><p>";	
+	echo "<div class='section'>";
+		// Marital Status
+		$marital_status = getMaritalStatus($dob_age[1], $details[5]);
+		if ($marital_status[0] == "Married") {
+			$marital_text = $marital_status[0] . " for " . $marital_status[1] . " year(s)";
+		} else {
+			$marital_text = $marital_status[0];
+		}
+		echo "<div class='line'><div class='linetitle'>Marital Status</div><div class='linecontent'>" . $marital_text . "</div></div>";
+		
+		// Children
+		$children = getChildren($marital_status[1]);
+		if ($children == 0) {
+			$kids_text = "None";
+		} elseif ($children == 1) {
+			$kids_text = "1 child";
+		} else {
+			$kids_text = $children . " children";
+		}
+		echo "<div class='line'><div class='linetitle'>Children</div><div class='linecontent'>" . $kids_text . "</div></div>";
+		
+		// Education
+		$education = getEducation($title);
+		echo "<div class='line'><div class='linetitle'>Education</div><div class='linecontent'>" . $education[0];
+		if ($education[1] != "") {
+			echo ", " . $education[1];
+		}
+		echo "</div></div>";
+
+	echo "</div>";
+		
+	echo "<div class='section'>";
 	
-	// Marital Status
-	$marital_status = getMaritalStatus($dob_age[1], $details[5]);
-	if ($marital_status[0] == "Married") {
-		$marital_text = $marital_status[0] . " for " . $marital_status[1] . " year(s)";
-	} else {
-		$marital_text = $marital_status[0];
-	}
-	echo "<font face='Georgia' size=4>" . $marital_text . "</font><p>";
-	
-	// Children
-	$children = getChildren($marital_status[1]);
-	if ($children == 0) {
-		$kids_text = "";
-	} elseif ($children == 1) {
-		$kids_text = "1 child";
-	} else {
-		$kids_text = $children . " children";
-	}
-	echo "<font face='Georgia' size=4>" . $kids_text . "</font><p>";
+		//Traits
+		$traits = getTraits();
+		echo "<div class='line'><div class='linetitle'>Traits</div><div class='linecontent'>" . $traits . "</div></div>";
+
+		//Values
+		$values = getvalues();
+		echo "<div class='line'><div class='linetitle'>Values</div><div class='linecontent'>" . $values . "</div></div>";
+
+		
+	echo "</div>";
 	
 }
 
 function generateName() {
-	
 	
 	# Get Forename
 	$forenames = file('lists/forenames.txt');
@@ -172,10 +200,73 @@ function getChildren($duration) {
 	}
 	
 	return rand(0, $max);
+
+}
+
+function getEducation($title) {
 	
+	$level = "";
+	$course = "";
 	
+	if ($title != "Dr" || $title != "Prof") {
+	
+		$choice = rand(0, 2);
+		switch ($choice) {
+			case 0:
+				$level = "Secondary School";
+				break;
+			case 1:
+				$level = "College";
+				$course = getCourse();
+				break;
+			case 2:
+				$level = "Undergraduate Degree";
+				$course = getCourse();
+				break;
+		}
+	
+	} else {
+		$level = "Postgraduate Degree";
+		$course = getCourse();		
+	}
+	
+	return [$level, $course];
 	
 }
 
+function getCourse() {
+
+	$courses = file('lists/courses.txt');
+	srand(); # Seed the random number generator
+	$index = rand(0, count($courses));
+	$course = trim(ucwords(strtolower($courses[$index])));
+	
+	return $course;
+	
+}
+
+function getTraits() {
+	
+	$text = "";
+	$traits = file('lists/traits.txt');
+	for ($t = 0; $t < 3; $t++) {
+		$text = $text . trim($traits[rand(0, count($traits))]) . ", ";
+	}
+	
+	return substr($text, 0, strlen($text)-2);
+	
+}
+
+function getValues() {
+	
+	$text = "";
+	$values = file('lists/values.txt');
+	for ($t = 0; $t < 3; $t++) {
+		$text = $text . trim($values[rand(0, count($values))]) . ", ";
+	}
+	
+	return substr($text, 0, strlen($text)-2);
+	
+}
 
 ?>

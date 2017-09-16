@@ -123,6 +123,19 @@ function drawContextFrame() {
 	contentDiv.width = 960;
 	contentDiv.height = canvasDimensions.height - 240;
 	
+	leftDiv = document.getElementById("left").style;
+	leftDiv.left = canvasDimensions.mid_x - 472;
+	leftDiv.top = 57;
+	leftDiv.width = 480;
+	leftDiv.height = canvasDimensions.height - 140;
+	
+	rightDiv = document.getElementById("right").style;
+	rightDiv.left = 480;
+	rightDiv.top = 0;
+	rightDiv.position = "absolute";
+	rightDiv.width = 480;
+	rightDiv.height = canvasDimensions.height - 140;
+	
 }
 
 function drawTitleText() {
