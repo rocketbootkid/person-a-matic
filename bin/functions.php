@@ -1,23 +1,30 @@
 <?php
 
-function displayPersona() {
+function displayPersonaDemographics() {
 
 	$details = getUserDetails();
 	$title = $details[5];
-	
-	echo "<div class='image'><img src='" . $details[4] . "' align=center></img></span></div>";
-	
+		
 	echo "<div class='section'>";
-		echo "<div class='name'>" . $title . " " . $details[1] . " " . $details[2] . "</div>";
-		//echo "<font face='Georgia' size=6>" . generateName() . "</font><p>";
+	
+		// Picture / Name
+		echo "<div class='line'><div class='image'><img src='" . $details[4] . "' align=center /></div><div class='name'>" . $title . " " . $details[1] . " " . $details[2] . "</div></div>";
 
+	echo "</div>";
+	
+	echo "<div class='rule'></div>";
+		
+	echo "<div class='section'>";
+	
 		// DOB / Age
 		$dob_age = generateDOBAge();
 		echo "<div class='line'><div class='linetitle'>Born</div><div class='linecontent'>" . $dob_age[0] . " (" . $dob_age[1] . ")</div></div>";
 		
+		$personaAge = $dob_age[1];
+		
 		// Nationality
 		echo "<div class='line'><div class='linetitle'>Nationality</div><div class='linecontent'><img src='images/flags/" . strtolower($details[3]) . ".png' style='margin-top: -5px;'> " . getNationality($details[3]) . "</div></div>";	
-		
+	
 	echo "</div>";
 	
 	echo "<div class='section'>";
@@ -79,6 +86,18 @@ function displayPersona() {
 		$values = getPhobia(3);
 		echo "<div class='line'><div class='linetitle'>Phobias</div><div class='linecontent'>" . $values . "</div></div>";
 		
+	echo "</div>";
+	
+	return $personaAge;
+	
+}
+
+function displayPersonaProfile($age) {
+	
+	echo "<div class='section'>";
+	
+		echo "<div class='line'><div class='linetitle'>Age</div><div class='linecontent'>" . $age . "</div></div>";
+
 	echo "</div>";
 	
 }
@@ -256,7 +275,7 @@ function getCourse() {
 
 	$courses = file('lists/courses.txt');
 	srand(); # Seed the random number generator
-	$index = rand(0, count($courses));
+	$index = rand(0, count($courses)-1);
 	$course = trim(ucwords(strtolower($courses[$index])));
 	
 	return $course;

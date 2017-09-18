@@ -13,16 +13,10 @@
     
     <div id="content">
 		<?php
-			displayPersona();
+			$age = displayPersonaDemographics();
+			echo "</div><div id='sidebar'>";
+			displayPersonaProfile($age);
 		?>
-    </div>
-    
-    <div id="sidebar">
-		<div id="section">Section</div>
-		<div id="section">Section</div>
-		<div id="section">Section</div>
-		<div id="section">Section</div>
-		<div id="section">Section</div>
     </div>
     
     <div id="footer">

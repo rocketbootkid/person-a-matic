@@ -86,7 +86,7 @@ function drawTitleText() {
 	
 	context.beginPath();
 	context.textAlign = "center";
-	context.translate(canvasDimensions.mid_x - 520, 350);
+	context.translate(canvasDimensions.mid_x - 520, 375);
 	context.rotate(270*Math.PI/180);
 	context.fillStyle = "black";
 	context.font = "100px Georgia";
