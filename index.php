@@ -1,29 +1,38 @@
-<!DOCTYPE php>
-
 <?php
 	include ('bin/functions.php');
 ?>
- 
+
 <html>
-    <head>
-        <title>Personomicon | Random Software Testing Personas</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-		<div id="content">
-			<div id="left">
-				<?php
-					displayPersona();
-				?>
-			</div>
-			<div id="right"></div>
-		</div>
-		<div id="bottom">
-			Created by @rocketbootkid. The people depicted here are randomly generated and completely fictitious. Any similarity to any person, alive or dead, is purely coindcidental.
-		</div>
-		<canvas id="myCanvas" width="2000" height="1000"></canvas>
-		<script src="js/background.js"></script>
-    </body>
+<head>
+	<title>Personomicon | Random Software Testing Personas</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+
+<div id="container">
+    
+    <div id="content">
+		<?php
+			displayPersona();
+		?>
+    </div>
+    
+    <div id="sidebar">
+		<div id="section">Section</div>
+		<div id="section">Section</div>
+		<div id="section">Section</div>
+		<div id="section">Section</div>
+		<div id="section">Section</div>
+    </div>
+    
+    <div id="footer">
+        <div id="section" class="footer">Created by <a href='https://twitter.com/rocketbootkid'>@rocketbootkid</a>. The people depicted here are randomly generated and completely fictitious. Any similarity to any person, alive or dead, is purely coindcidental.</div>
+    </div>
+	
+</div>
+
+<canvas id="myCanvas" width="2000" height="1000"></canvas>
+<script src="js/background.js"></script>
+
+</body>
 </html>

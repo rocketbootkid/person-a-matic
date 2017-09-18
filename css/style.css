@@ -1,57 +1,56 @@
-a { 
-	text-decoration:none; 
-}
-
-a:hover { text-decoration:underline; }
-
-a:link {color:black; }
-a:visited {color:black; }
-a:active {color:black; }
-
-div#body {
-	width: 960px;
-	align: center;
-}
-
-div#content {
-	position: absolute;
-}
-
-div#bottom {
-	height: 50px;
-	font-size: 15px;
-	font-family: Georgia;
-	color: black;
-	text-align: center;
-	position: absolute;
-	margin: 0 0 0 auto;
-	top: 0;
-	left: 0;
-	width: 960px;
-}
-
-div#left {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 480px;
-}
-
-div#left {
-	position: relative;
-	top: 0;
-	left: 480px;
-	width: 480px;
-}
-
-div.section {
-	margin-top: 5px;
-	margin-bottom: 10px;
-	margin-right: 5px;
-	background-color: #eee;
+#container {
+    width:1000px;
+    margin:50px auto;
 	padding: 5px;
-	border-radius: 7px;
-	border: 1 solid black;
+	border-radius: 5px;
+}
+
+#content {
+    float:left;
+    width:500px;
+}
+
+#sidebar {
+    float:left;
+    width:500px;
+}
+
+#footer {
+    clear:both;
+	text-align: center;
+}
+
+.section {
+	margin: 5px;
+	padding: 5px;
+	background-color: #bbb;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+div.linetitle {
+	font-weight: bold;
+	width: 150px;
+	text-align: right;
+	float: left;
+	margin: 0 2px auto;
+}
+
+div.linecontent {
+	padding-left: 10px;
+	border-left: 3px solid #555;
+	text-align: left;
+	text-decoration: none;
+	margin: 3px 2px 0 160px;
+}
+
+div.name {
+	font-size: 30px;
+	font-family: Georgia;
+	text-align: center;
+	border-bottom: 3px solid #555;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
 }
 
 div.line {
@@ -65,26 +64,32 @@ div.image {
 	text-align:center;
 	margin-bottom: 10px;
 }
-
-div.linetitle {
-	font-weight:bold;
-	width: 150px;
-	text-align: right;
-	float: left;
+	
+a { 
+	text-decoration:none; 
 }
 
-div.linecontent {
-	padding-left: 10px;
-	border-left: 3px solid #555;
-	margin-left: 160px;
-	text-align: left;
-	text-decoration: none;
+a:hover { text-decoration:underline; }
+
+a:link {color:black; }
+a:visited {color:black; }
+a:active {color:black; }
+
+#footer {
+	font-family: Georgia;
+	font-size: 16px;
+	background-color: #bbb;	
+	border-radius: 5px;
+	margin: 10px 0 5px 5px;
+	padding: 10px;
 }
 
-div.name {
-	font-size: 30px;
-	text-align: center;
-	border-bottom: 3px solid #555;
-	margin-bottom: 10px;
-	padding-bottom: 5px;
+canvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+	
+	
+	
 }

@@ -8,7 +8,7 @@ function displayPersona() {
 	echo "<div class='image'><img src='" . $details[4] . "' align=center></img></span></div>";
 	
 	echo "<div class='section'>";
-		echo "<div class='line name'>" . $title . " " . $details[1] . " " . $details[2] . "</div>";
+		echo "<div class='name'>" . $title . " " . $details[1] . " " . $details[2] . "</div>";
 		//echo "<font face='Georgia' size=6>" . generateName() . "</font><p>";
 
 		// DOB / Age
