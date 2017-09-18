@@ -39,12 +39,12 @@ function displayPersonaDemographics() {
 		
 		// Children
 		$children = getChildren($marital_status[1]);
-		if ($children == 0) {
+		if ($children[0] == 0) {
 			$kids_text = "None";
-		} elseif ($children == 1) {
-			$kids_text = "1 child";
+		} elseif ($children[0] == 1) {
+			$kids_text = "1 child; " . $children[1];
 		} else {
-			$kids_text = $children . " children";
+			$kids_text = $children[0] . " children; " . $children[1];
 		}
 		echo "<div class='line'><div class='linetitle'>Children</div><div class='linecontent'>" . $kids_text . "</div></div>";
 		
@@ -83,7 +83,7 @@ function displayPersonaDemographics() {
 		echo "<div class='line'><div class='linetitle'>Dislikes</div><div class='linecontent'>" . $values . "</div></div>";
 
 		// Phobias
-		$values = getPhobia(3);
+		$values = getPhobia(rand(1,4));
 		echo "<div class='line'><div class='linetitle'>Phobias</div><div class='linecontent'>" . $values . "</div></div>";
 		
 	echo "</div>";
@@ -102,21 +102,15 @@ function displayPersonaProfile($age) {
 	
 }
 
-function generateName() {
+function generateForeName() {
 	
 	# Get Forename
 	$forenames = file('lists/forenames.txt');
 	srand(); # Seed the random number generator
 	$index = rand(0, count($forenames));
 	$forename = trim(ucfirst(strtolower($forenames[$index])));
-	
-	# Get Surname
-	$surnames = file('lists/surnames.txt');
-	srand(); # Seed the random number generator
-	$index = rand(0, count($surnames));
-	$surname = trim($surnames[$index]);	
 
-	return $forename . " " . $surname;
+	return $forename;
 	
 }
 
@@ -225,17 +219,33 @@ function getMaritalStatus($age, $title) {
 	
 }
 
-function getChildren($duration) {
+function getChildren($length_of_marriage) {
 	
 	$max_kids = 4;
 	
-	if ($duration < $max_kids) {
-		$max = $duration;
+	if ($length_of_marriage < $max_kids) {
+		$max = $length_of_marriage - 2;
 	} else {
 		$max = $max_kids;
 	}
 	
-	return rand(0, $max);
+	$numKids = rand(0, $max);
+	$kid_details = "";
+	$max_age = $length_of_marriage;
+	for ($k = 0; $k < $numKids; $k++) {
+		$kid_age = 0;
+		$name = generateForeName();
+		$min_age = $max_age - 4;
+		$max_age = $max_age - 1;
+		while ($kid_age <= 0) {
+			$kid_age = rand($min_age, $max_age);
+		}
+		$kid_details = $kid_details . ucfirst($name) . " (" . $kid_age . "), ";
+		$max_age = $kid_age;
+		
+	}
+	
+	return [$numKids, substr($kid_details, 0, strlen($kid_details)-2)];
 
 }
 
@@ -323,7 +333,6 @@ function getLinesFromFile($file, $rows) {
 	$text = substr($text, 0, strlen($text)-2); // Remove trailing comma
 	
 	return $text;	
-	
 	
 }
 
