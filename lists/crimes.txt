@@ -1,0 +1,103 @@
+1 Murder 
+104 Assault without Injury on a Constable
+105A Assault without Injury  
+105B Racially or religiously Aggravated Assault without Injury
+10A Possession of Firearms with Intent
+10B Possession of Firearms Offences
+10B Violence Against The Person
+10C Possession of Other Weapons
+10D Possession of Article with Blade or Point
+126 Interfering with a motor vehicle
+14 Procuring Illegal Abortion
+15 Concealing an Infant Death Close to Birth
+2 Attempted Murder
+24 Exploitation of Prostitution
+26 Bigamy
+27 Soliciting for the purpose of prostitution
+27 Soliciting of Women by Men
+28A/B/C/D Burglary in a dwelling - artifice
+29 Aggravated Burglary in a dwelling
+30A/B Burglary in a building other than a dwelling
+31 Burglary in a building other than a dwelling
+33 Going Equipped for stealing
+34A Robbery of Business Property
+34B Robbery of Personal Property
+35 Blackmail
+36 Kidnapping
+37/1 Causing Death by Aggravated Vehicle Taking
+37/2 Aggravated Vehicle Taking
+38 Profiting from or concealing knowledge of the proceeds of crime
+39 Theft from the Person
+3A Conspiracy to commit murder
+3B Threats to Kill
+4/1 Manslaughter
+4/10 Corporate Manslaughter
+4/4 Causing Death by Dangerous Driving
+4/6 Causing Death by Careless Driving under influence of drink or drugs
+4/7 Causing or Allowing Death of Child or Vulnerable Person
+4/8 Causing Death by careless or inconsiderate driving
+4/9 Causing Death by Driving: Unlicensed, Disqualified or Uninsured Drivers
+40 Theft in a dwelling other than from automatic machine or meter
+42 Theft of Mail
+42 Theft or Unlawful Taking of Mail
+43 Dishonest Use of Electricity
+44 Theft or Unauthorised Taking of Pedal Cycle
+45 Theft from a Vehicle
+46 Shoplifting
+47 Theft from an Automatic Machine or Meter
+48 Theft or Unauthorised Taking of Motor Vehicle
+49 Other Theft
+51 Frauds by Company Director, Sole Trader etc
+52 False Accounting
+53B Preserved other fraud and repealed fraud offences
+53C Fraud by False Representation Cheque, Plastic Card and Online Bank Accounts (not e-Bay or PayPal)
+53D Fraud by False Representation Other fraud
+53E Fraud by Failing to Disclose Information
+53F Fraud by Abuse of Position
+53G Obtaining Services Dishonestly
+53H Making or Supplying Articles for Use in Frauds
+53J Possession of Articles for Use in Frauds
+54 Handling Stolen Goods
+55 Bankruptcy and Insolvency
+56A Arson
+56A Arson endangering life
+56B Arson
+58A Criminal Damage to a dwelling
+58B Criminal Damage to a building other than a dwelling
+58C Criminal Damage to a vehicle
+58D Other Criminal Damage
+58J Racially or Religiously Aggravated Criminal Damage 
+59 Threat or possession with intent to commit Criminal Damage
+5D Assault with intent to cause serious harm
+5E Endangering Life
+60 Forgery or use of drug prescription
+61 Other Forgery
+61A Possession of false documents
+62A Other Offences against the State or public order
+62A Violent Disorder
+66 Other Offences against the State or public order
+67 Perjury 
+69 Offender Management Act
+76 Aiding Suicide
+79 Perverting the Course of Justice
+80 Absconding from Lawful Custody
+802 Dangerous Driving
+81 Other Firearms Offences
+814 Fraud Forgery associated with vehicle or driver records
+83 Bail Offences
+86 Obscene Publications etc
+88E Exposure and Voyeurism
+8G Actual Bodily Harm and other Injury
+8L Harassment
+8M Racially or Religiously Aggravated Harassment
+8N Assault with injury
+8P Racially or Religiously Aggravated Assault with Injury
+90 Other Knives Offences
+92A Trafficking in controlled drugs
+92C Other drug offences
+92D Possession of controlled drugs
+95 Disclosure, Obstruction, False or Misleading Statements
+99 Other Notifiable Offices
+9A Public Fear Alarm or Distress
+9B Racially or Religiously Aggravated Public Fear, Alarm or Distress
+NFIB9 Frauds by Company Directors, Sole Traders etc.

@@ -3,13 +3,13 @@ var context = canvas.getContext('2d');
 
 // Make canvas size of window
 context.canvas.width = window.innerWidth - 20;
-context.canvas.height = window.innerHeight - 20;
+context.canvas.height = window.innerHeight + 500;
 
 var canvasDimensions = {
 		width: window.innerWidth,
 		mid_x: window.innerWidth/2,
 		mid_y: window.innerHeight/2,
-		height: window.innerHeight
+		height: window.innerHeight + 500
 	};
 
 	
@@ -26,7 +26,7 @@ var horizonNeareningFactor = 1; // Amount by which nearer horizons get lower
 
 //drawSky();
 drawHills();
-drawFooterText();
+//drawFooterText();
 drawContextFrame();
 drawTitleText();
 
@@ -103,19 +103,11 @@ function drawFooterText() {
 	context.fillStyle = "white";
 	context.textAlign = "center";
 	context.font = "16px Georgia";
-	context.fillText("Created by @rocketbootkid. Some data pulled from randomuser.me", canvasDimensions.mid_x, canvasDimensions.height - 40);
+	context.fillText("Created by @rocketbootkid. The people depicted here are randomly generated and completely fictitious. Any similarity to any person, alive or dead, is purely coindcidental.", canvasDimensions.mid_x, canvasDimensions.height - 40);
 	
 }
 
 function drawContextFrame() {
-
-	context.beginPath();
-	context.fillStyle = "#222";
-	context.fillRect(canvasDimensions.mid_x - 500, 30, 1000, canvasDimensions.height - 100);
-	
-	context.beginPath();
-	context.fillStyle = "white";
-	context.fillRect(canvasDimensions.mid_x - 490, 40, 980, canvasDimensions.height - 120);
 	
 	contentDiv = document.getElementById("content").style;
 	contentDiv.left = canvasDimensions.mid_x - 472;
@@ -123,12 +115,17 @@ function drawContextFrame() {
 	contentDiv.width = 960;
 	contentDiv.height = canvasDimensions.height - 240;
 	
+	bottomDiv = document.getElementById("bottom").style;
+	bottomDiv.left = canvasDimensions.mid_x - 472;
+	bottomDiv.top = document.getElementById("content").height + 50;
+	bottomDiv.width = 960;
+	/*
 	leftDiv = document.getElementById("left").style;
 	leftDiv.left = canvasDimensions.mid_x - 472;
 	leftDiv.top = 57;
 	leftDiv.width = 480;
 	leftDiv.height = canvasDimensions.height - 140;
-	
+	*/
 	rightDiv = document.getElementById("right").style;
 	rightDiv.left = 480;
 	rightDiv.top = 0;

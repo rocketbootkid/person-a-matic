@@ -16,6 +16,9 @@ Attractive
 Balanced
 Benevolent
 Brilliant
+Blighter
+Bounder
+Cad
 Calm
 Capable
 Captivating
@@ -112,7 +115,6 @@ Intuitive
 Invulnerable
 Kind
 Knowledge
-Leaderly
 Leisurely
 Liberal
 Logical
@@ -160,6 +162,7 @@ Providential
 Prudent
 Punctual
 Pruposeful
+Rapscalion
 Rational
 Realistic
 Reflective
@@ -171,10 +174,13 @@ Responsible
 Responsive
 Reverential
 Romantic
+Rotter
+Ruffian
 Rustic
 Sage
 Sane
 Scholarly
+Scoundrel
 Scrupulous
 Secure
 Selfless

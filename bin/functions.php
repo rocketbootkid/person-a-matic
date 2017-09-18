@@ -49,6 +49,12 @@ function displayPersona() {
 		}
 		echo "</div></div>";
 
+		if (rand(1, 100) > 92) {
+			// Criminal Record
+			$crimes = getLinesFromFile('crimes', rand(1, 3));
+			echo "<div class='line'><div class='linetitle'>Crimes</div><div class='linecontent'>" . $crimes . "</div></div>";
+		}
+		
 	echo "</div>";
 		
 	echo "<div class='section'>";
@@ -60,7 +66,18 @@ function displayPersona() {
 		//Values
 		$values = getvalues();
 		echo "<div class='line'><div class='linetitle'>Values</div><div class='linecontent'>" . $values . "</div></div>";
+		
+		// Likes
+		$values = getLinesFromFile('likes', 3);
+		echo "<div class='line'><div class='linetitle'>Likes</div><div class='linecontent'>" . $values . "</div></div>";
+		
+		// Dislikes
+		$values = getLinesFromFile('dislikes', 3);
+		echo "<div class='line'><div class='linetitle'>Dislikes</div><div class='linecontent'>" . $values . "</div></div>";
 
+		// Phobias
+		$values = getPhobia(3);
+		echo "<div class='line'><div class='linetitle'>Phobias</div><div class='linecontent'>" . $values . "</div></div>";
 		
 	echo "</div>";
 	
@@ -227,7 +244,8 @@ function getEducation($title) {
 	
 	} else {
 		$level = "Postgraduate Degree";
-		$course = getCourse();		
+		//$course = getCourse();
+		$course = getLinesFromFile('courses', 1);
 	}
 	
 	return [$level, $course];
@@ -250,7 +268,8 @@ function getTraits() {
 	$text = "";
 	$traits = file('lists/traits.txt');
 	for ($t = 0; $t < 3; $t++) {
-		$text = $text . trim($traits[rand(0, count($traits))]) . ", ";
+		$word = trim($traits[rand(0, count($traits)-1)]);
+		$text = $text . "<a href='http://www.dictionary.com/browse/" . lcfirst($word) . "?s=t' target='_blank' title='View definition'>" . $word . "</a>, ";
 	}
 	
 	return substr($text, 0, strlen($text)-2);
@@ -262,10 +281,48 @@ function getValues() {
 	$text = "";
 	$values = file('lists/values.txt');
 	for ($t = 0; $t < 3; $t++) {
-		$text = $text . trim($values[rand(0, count($values))]) . ", ";
+		$word = trim($values[rand(0, count($values)-1)]);
+		$text = $text . "<a href='http://www.dictionary.com/browse/" . lcfirst($word) . "?s=t' target='_blank' title='View definition'>" . $word . "</a>, ";
 	}
 	
 	return substr($text, 0, strlen($text)-2);
+	
+}
+
+function getLinesFromFile($file, $rows) {
+	
+	$text = "";
+	$values = file("lists/" . $file . ".txt");
+	for ($t = 0; $t < $rows; $t++) {
+		$word = ucfirst(trim($values[rand(0, count($values)-1)]));
+		if (substr($word, -1, 1) == ".") {
+			$word = substr($word, 0, strlen($word)-1);
+		}
+		$text = $text . $word . ", ";
+	}
+	
+	$text = substr($text, 0, strlen($text)-2); // Remove trailing comma
+	
+	return $text;	
+	
+	
+}
+
+function getPhobia($count) {
+	
+	$text = "";
+	$phobias = file('lists/phobias.txt');
+	for ($t = 0; $t < $count; $t++) {
+		$phobia = trim($phobias[rand(0, count($phobias)-1)]);
+		$details = explode("- ", $phobia);
+		$phobiaName = $details[0];
+		$phobiaNames = explode(" or ", $phobiaName);
+		$phobiaName = $phobiaNames[0];
+		$phobiaDesc = $details[1];
+		$text = $text . "<span title='" . $phobiaDesc . "'>" . $phobiaName . "</span>, ";
+	}
+	
+	return substr($text, 0, strlen($text)-2);	
 	
 }
 

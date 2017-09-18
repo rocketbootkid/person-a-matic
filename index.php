@@ -12,7 +12,6 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-		<div id="title"></div>
 		<div id="content">
 			<div id="left">
 				<?php
@@ -20,6 +19,9 @@
 				?>
 			</div>
 			<div id="right"></div>
+		</div>
+		<div id="bottom">
+			Created by @rocketbootkid. The people depicted here are randomly generated and completely fictitious. Any similarity to any person, alive or dead, is purely coindcidental.
 		</div>
 		<canvas id="myCanvas" width="2000" height="1000"></canvas>
 		<script src="js/background.js"></script>

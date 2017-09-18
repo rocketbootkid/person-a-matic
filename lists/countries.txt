@@ -1,5 +1,5 @@
 Afghanistan,Afghan,AF
-Albania,Albanian ,AL
+Albania,Albanian,AL
 Algeria,Algerian,DZ
 America,American,US
 Andorra,Andorran,AD
