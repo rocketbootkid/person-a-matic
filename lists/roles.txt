@@ -1,0 +1,94 @@
+0,Associate
+1,Senior Associate
+2,Non-manager
+3,Non-manager
+4,Non-manager
+5,Non-manager
+6,Non-manager
+7,Non-manager
+8,Senior Non-manager
+8,Manager
+9,Senior Non-manager
+9,Manager
+10,Senior Non-manager
+10,Manager
+11,Senior Non-manager
+11,Manager
+12,Senior Non-manager
+12,Senior Manager
+13,Senior Non-manager
+13,Senior Manager
+14,Senior Non-manager
+14,Senior Manager
+15,Senior Non-manager
+15,Senior Manager
+16,Senior Non-manager
+16,Director
+17,Senior Non-manager
+17,Director
+18,Senior Non-manager
+18,Director
+19,Senior Non-manager
+19,Director
+20,Senior Non-manager
+20,Director
+21,Senior Non-manager
+21,Senior Director
+22,Senior Non-manager
+22,Senior Director
+23,Senior Non-manager
+23,Senior Director
+24,Senior Non-manager
+24,Senior Director
+25,Senior Non-manager
+25,Senior Director
+26,Senior Non-manager
+26,Vice President
+27,Senior Non-manager
+27,Vice President
+28,Senior Non-manager
+28,Vice President
+29,Senior Non-manager
+29,Vice President
+30,Senior Non-manager
+30,Vice President
+31,Senior Non-manager
+31,Vice President
+32,Senior Non-manager
+32,Senior Vice President
+33,Senior Non-manager
+33,Senior Vice President
+34,Senior Non-manager
+34,Senior Vice President
+35,Senior Non-manager
+35,Senior Vice President
+36,Senior Non-manager
+36,C-Level
+37,Senior Non-manager
+37,C-Level
+38,Senior Non-manager
+38,C-Level
+39,Senior Non-manager
+39,C-Level
+40,Senior Non-manager
+40,C-Level
+41,Senior Non-manager
+41,C-Level
+42,Senior Non-manager
+42,C-Level
+43,Senior Non-manager
+43,C-Level
+44,Senior Non-manager
+44,C-Level
+45,Senior Non-manager
+45,C-Level
+46,Senior Non-manager
+46,C-Level
+47,Senior Non-manager
+47,C-Level
+48,Senior Non-manager
+48,C-Level
+49,Senior Non-manager
+49,C-Level
+50,Senior Non-manager
+50,C-Level

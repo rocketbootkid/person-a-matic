@@ -13,9 +13,9 @@
     
     <div id="content">
 		<?php
-			$age = displayPersonaDemographics();
+			$details = displayPersonaDemographics();
 			echo "</div><div id='sidebar'>";
-			displayPersonaProfile($age);
+			displayPersonaProfile($details[0], $details[1]);
 		?>
     </div>
     

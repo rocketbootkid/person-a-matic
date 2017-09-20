@@ -49,7 +49,7 @@ function displayPersonaDemographics() {
 		echo "<div class='line'><div class='linetitle'>Children</div><div class='linecontent'>" . $kids_text . "</div></div>";
 		
 		// Education
-		$education = getEducation($title);
+		$education = getEducation($title, $personaAge);
 		echo "<div class='line'><div class='linetitle'>Education</div><div class='linecontent'>" . $education[0];
 		if ($education[1] != "") {
 			echo ", " . $education[1];
@@ -88,15 +88,26 @@ function displayPersonaDemographics() {
 		
 	echo "</div>";
 	
-	return $personaAge;
+	return [$personaAge, $education[2]];
 	
 }
 
-function displayPersonaProfile($age) {
+function displayPersonaProfile($age, $experience) {
 	
 	echo "<div class='section'>";
 	
-		echo "<div class='line'><div class='linetitle'>Age</div><div class='linecontent'>" . $age . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Experience</div><div class='linecontent'>" . $experience . " years</div></div>";
+		echo "<div class='line'><div class='linetitle'>Seniority</div><div class='linecontent'>" . getRole($experience) . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Domain</div><div class='linecontent'>" . getLinesFromFile('domains', 1) . "</div></div>";
+
+	echo "</div>";
+
+	echo "<div class='section'>";
+	
+		echo "<div class='line'><div class='linetitle'>Location</div><div class='linecontent'>Office</div></div>";
+		echo "<div class='line'><div class='linetitle'>Device</div><div class='linecontent'>Desktop | Windows</div></div>";
+		echo "<div class='line'><div class='linetitle'>Browser</div><div class='linecontent'>Chrome</div></div>";
+		echo "<div class='line'><div class='linetitle'>Tech Savvy</div><div class='linecontent'>Experienced</div></div>";
 
 	echo "</div>";
 	
@@ -249,10 +260,11 @@ function getChildren($length_of_marriage) {
 
 }
 
-function getEducation($title) {
+function getEducation($title, $age) {
 	
 	$level = "";
 	$course = "";
+	$years_of_experience = 0;
 	
 	if ($title != "Dr" || $title != "Prof") {
 	
@@ -260,24 +272,27 @@ function getEducation($title) {
 		switch ($choice) {
 			case 0:
 				$level = "Secondary School";
+				$years_of_experience = $age - (17 + rand(0, 1));
 				break;
 			case 1:
 				$level = "College";
+				$years_of_experience = $age - (20 + rand(0, 2));
 				$course = getCourse();
 				break;
 			case 2:
 				$level = "Undergraduate Degree";
+				$years_of_experience = $age - (21 + rand(0, 2));
 				$course = getCourse();
 				break;
 		}
 	
 	} else {
 		$level = "Postgraduate Degree";
-		//$course = getCourse();
+		$years_of_experience = $age - 27 + rand(0, 2);
 		$course = getLinesFromFile('courses', 1);
 	}
 	
-	return [$level, $course];
+	return [$level, $course, $years_of_experience];
 	
 }
 
@@ -351,6 +366,30 @@ function getPhobia($count) {
 	}
 	
 	return substr($text, 0, strlen($text)-2);	
+	
+}
+
+function getRole($experience) {
+	
+	$text = "";
+	$roles = file('lists/roles.txt');
+	for ($r = 0; $r < count($roles); $r++) {
+		$details = explode(",", $roles[$r]);
+		if ($details[0] == $experience) {
+			// Decide if get first one (non-manager) or next one (manager)
+			$choice = rand(0, 1);
+			if ($choice == 0) {
+				$text = $details[1];
+			} else {
+				$r++;
+				$text = explode(",", $roles[$r])[1];
+			}
+			
+		}
+		
+	}
+	
+	return $text;
 	
 }
 
