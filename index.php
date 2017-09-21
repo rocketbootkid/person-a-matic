@@ -15,7 +15,7 @@
 		<?php
 			$details = displayPersonaDemographics();
 			echo "</div><div id='sidebar'>";
-			displayPersonaProfile($details[0], $details[1]);
+			displayPersonaProfile($details[0], $details[1], $details[2]);
 		?>
     </div>
     

@@ -4,6 +4,7 @@ function displayPersonaDemographics() {
 
 	$details = getUserDetails();
 	$title = $details[5];
+	$sentence = 0;
 		
 	echo "<div class='section'>";
 	
@@ -56,10 +57,13 @@ function displayPersonaDemographics() {
 		}
 		echo "</div></div>";
 
+		// Criminal Record
+		$crime_text = "";
 		if (rand(1, 100) > 92) {
-			// Criminal Record
-			$crimes = getLinesFromFile('crimes', rand(1, 3));
-			echo "<div class='line'><div class='linetitle'>Crimes</div><div class='linecontent'>" . $crimes . "</div></div>";
+			$crime_details = getCrime($personaAge);
+			$crime_text = $crime_details[0];
+			$sentence = $crime_details[1];
+			echo "<div class='line'><div class='linetitle'>Crimes</div><div class='linecontent'>" . $crime_text . "</div></div>";
 		}
 		
 	echo "</div>";
@@ -88,26 +92,36 @@ function displayPersonaDemographics() {
 		
 	echo "</div>";
 	
-	return [$personaAge, $education[2]];
+	return [$personaAge, $education[2], $sentence];
 	
 }
 
-function displayPersonaProfile($age, $experience) {
+function displayPersonaProfile($age, $experience, $sentence) {
 	
 	echo "<div class='section'>";
 	
+		if ($sentence > 0) {
+			$experience = $experience - $sentence;
+			if ($experience <= 0) {
+				$experience = rand(0, ceil($experience/3));
+			}
+		}
+	
 		echo "<div class='line'><div class='linetitle'>Experience</div><div class='linecontent'>" . $experience . " years</div></div>";
+		echo "<div class='line'><div class='linetitle'>Company</div><div class='linecontent'>" . getCompany() . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Seniority</div><div class='linecontent'>" . getRole($experience) . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Domain</div><div class='linecontent'>" . getLinesFromFile('domains', 1) . "</div></div>";
 
 	echo "</div>";
 
+	$office_details = getEnvironment();
+	
 	echo "<div class='section'>";
 	
-		echo "<div class='line'><div class='linetitle'>Location</div><div class='linecontent'>Office</div></div>";
-		echo "<div class='line'><div class='linetitle'>Device</div><div class='linecontent'>Desktop | Windows</div></div>";
-		echo "<div class='line'><div class='linetitle'>Browser</div><div class='linecontent'>Chrome</div></div>";
-		echo "<div class='line'><div class='linetitle'>Tech Savvy</div><div class='linecontent'>Experienced</div></div>";
+		echo "<div class='line'><div class='linetitle'>Location</div><div class='linecontent'>" . $office_details[0] . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Device</div><div class='linecontent'>" . $office_details[1] . " | " . $office_details[2] . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Browser</div><div class='linecontent'>" . $office_details[3] . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Tech Savvy</div><div class='linecontent'>" . getLinesFromFile('expertise', 1) . "</div></div>";
 
 	echo "</div>";
 	
@@ -118,7 +132,7 @@ function generateForeName() {
 	# Get Forename
 	$forenames = file('lists/forenames.txt');
 	srand(); # Seed the random number generator
-	$index = rand(0, count($forenames));
+	$index = rand(0, count($forenames)-1);
 	$forename = trim(ucfirst(strtolower($forenames[$index])));
 
 	return $forename;
@@ -356,7 +370,7 @@ function getPhobia($count) {
 	$text = "";
 	$phobias = file('lists/phobias.txt');
 	for ($t = 0; $t < $count; $t++) {
-		$phobia = trim($phobias[rand(0, count($phobias)-1)]);
+		$phobia = trim($phobias[rand(0, count($phobias)-2)]);
 		$details = explode("- ", $phobia);
 		$phobiaName = $details[0];
 		$phobiaNames = explode(" or ", $phobiaName);
@@ -390,6 +404,96 @@ function getRole($experience) {
 	}
 	
 	return $text;
+	
+}
+
+function getEnvironment() {
+	
+	// This function will output Location > Device > Operating System > Browser
+	$locations = ['Office', 'Onsite', 'Mobile'];
+	$desktop_oss = ['Windows','macOS','Linux'];
+	$desktop_browsers = ['Chrome','Firefox','Opera','Internet Explorer','Edge'];
+	$desktop_devices = ['Desktop','Laptop'];
+	$mobile_oss = ['Android','iOS'];
+	$mobile_browsers = ['Chrome','Opera'];
+	$mobile_devices = ['Phone','Tablet'];
+	$location = $locations[rand(0, count($locations)-1)];
+	switch ($location) {
+		case "Office":
+			$device = "Desktop";
+			$device = $desktop_devices[rand(0, count($desktop_devices)-1)];
+			$os = $desktop_oss[rand(0, count($desktop_oss)-1)];
+			if ($os == "macOS") {
+				$browser = "Safari";
+			} elseif ($os == "Linux") {
+					$browser = "default";
+				while ($browser != "Chrome" && $os != "Firefox") {
+					$desktop_browsers = ['Chrome','Firefox'];
+					$browser = $desktop_browsers[rand(0, count($desktop_browsers)-1)];	
+				}
+			} else {
+				$browser = $desktop_browsers[rand(0, count($desktop_browsers)-1)];	
+			}
+			break;
+		case "Onsite":
+			$device = $desktop_devices[rand(0, count($desktop_devices)-1)];
+			$os = $desktop_oss[rand(0, count($desktop_oss)-1)];
+			if ($os == "macOS") {
+				$browser = "Safari";
+			} elseif ($os == "Linux") {
+					$browser = "default";
+				while ($browser != "Chrome" && $os != "Firefox") {
+					$desktop_browsers = ['Chrome','Firefox'];
+					$browser = $desktop_browsers[rand(0, count($desktop_browsers)-1)];	
+				}
+			} else {
+				$browser = $desktop_browsers[rand(0, count($desktop_browsers)-1)];	
+			}
+			break;
+		case "Mobile":
+			$device = $mobile_devices[rand(0, count($mobile_devices)-1)];
+			$os = $mobile_oss[rand(0, count($mobile_oss)-1)];
+			if ($os == "iOS") {
+				$browser = "Safari";
+			} else {
+				$browser = $mobile_browsers[rand(0, count($mobile_browsers)-1)];
+			}
+			break;
+	}
+	
+	return [$location, $device, $os, $browser];
+	
+}
+
+function getCompany() {
+	
+	$first = getLinesFromFile('adjectives', 1);
+	$second = getLinesFromFile('nouns', 1);
+	$suffix = getLinesFromFile('company_suffixes', 1);
+	
+	return $first . " " . $second . " " . $suffix;
+	
+}
+
+function getCrime($personaAge) {
+	
+	$crime_text = "";
+	$sentence = 0;
+	
+	$crime_end_date = strtotime('-4 years');
+	$crime_end_date = date("Y", $crime_end_date);
+	$crime_range = $personaAge - 16;
+	$crime_start_date = $crime_end_date - $crime_range;
+	$crimes = getLinesFromFile('crimes', rand(1, 3));
+	$crimes = explode(",", $crimes);
+	foreach ($crimes as $crime) {
+		$crime_text = $crime_text . $crime . " (" . rand($crime_start_date, $crime_end_date) . "), ";
+		$sentence = $sentence + rand(1, 10);
+	}
+	
+	$crime_text = substr($crime_text, 0, strlen($crime_text) -2);
+	
+	return [$crime_text, $sentence];
 	
 }
 

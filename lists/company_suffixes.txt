@@ -1,0 +1,11 @@
+Inc
+Ltd
+GmbH
+AB
+AG
+LLP
+LLC
+PLC
+SA
+SpA
+SàRL
