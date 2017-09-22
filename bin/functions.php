@@ -73,11 +73,11 @@ function displayPersonaDemographics() {
 	echo "<div class='section'>";
 	
 		//Traits
-		$traits = getTraits();
+		$traits = getTraits('3');
 		echo "<div class='line'><div class='linetitle'>Traits</div><div class='linecontent'>" . $traits . "</div></div>";
 
 		//Values
-		$values = getvalues();
+		$values = getValues('3');
 		echo "<div class='line'><div class='linetitle'>Values</div><div class='linecontent'>" . $values . "</div></div>";
 		
 		// Likes
@@ -97,7 +97,17 @@ function displayPersonaDemographics() {
 	echo "<div class='section'>";
 
 		// Pets
-		echo "<div class='line'><div class='linetitle'>Pet</div><div class='linecontent'>" . getPet() . "</div></div>";
+		$have_pets = rand(0, 1);
+		if ($have_pets == 1) {
+			$details = getPet();
+			echo "<div class='line'><div class='linetitle'>Pets</div><div class='linecontent'>" . $details . "</div></div>";
+		}
+		
+		// Hobbies
+		echo "<div class='line'><div class='linetitle'>Hobbies</div><div class='linecontent'>" . getLinesFromFile('hobbies', rand(1, 4)) . "</div></div>";
+
+		// Social Media
+		echo "<div class='line'><div class='linetitle'>Social Media</div><div class='linecontent'>" . getLinesFromFile('social', rand(1, 4)) . "</div></div>";
 		
 	echo "</div>";
 
@@ -115,12 +125,16 @@ function displayPersonaProfile($age, $experience, $sentence) {
 			if ($experience <= 0) {
 				$experience = rand(0, ceil($experience/3));
 			}
+		} 
+		if ($experience <= 0) {
+			$experience = 1;
 		}
 	
 		echo "<div class='line'><div class='linetitle'>Experience</div><div class='linecontent'>" . $experience . " years</div></div>";
 		echo "<div class='line'><div class='linetitle'>Company</div><div class='linecontent'>" . getCompany() . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Seniority</div><div class='linecontent'>" . getRole($experience) . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Domain</div><div class='linecontent'>" . getLinesFromFile('domains', 1) . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Knowledge</div><div class='linecontent'>" . getDomainExperience($experience) . "</div></div>";
 
 	echo "</div>";
 
@@ -132,6 +146,14 @@ function displayPersonaProfile($age, $experience, $sentence) {
 		echo "<div class='line'><div class='linetitle'>Location</div><div class='linecontent'>" . $office_details[0] . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Device</div><div class='linecontent'>" . $office_details[1] . " | " . $office_details[2] . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Browser</div><div class='linecontent'>" . $office_details[3] . "</div></div>";
+		
+		// Assistive Tech
+		$have = rand(0, 10);
+		if ($have == 10) {
+			$details = getLinesFromFile('assistive', 1);
+			echo "<div class='line'><div class='linetitle'>Assistive Tech.</div><div class='linecontent'>" . $details . "</div></div>";
+		}
+		
 		echo "<div class='line'><div class='linetitle'>Tech Savvy</div><div class='linecontent'>" . getLinesFromFile('expertise', 1) . "</div></div>";
 
 	echo "</div>";
@@ -332,12 +354,13 @@ function getCourse() {
 	
 }
 
-function getTraits() {
+function getTraits($count) {
 	
 	$text = "";
 	$traits = file('lists/traits.txt');
-	for ($t = 0; $t < 3; $t++) {
-		$word = trim($traits[rand(0, count($traits)-1)]);
+	$choices = getUniqueArrayChoices(0, count($traits)-1, $count);
+	for ($t = 0; $t < $count; $t++) {
+		$word = trim($traits[$choices[$t]]);
 		$text = $text . "<a href='http://www.dictionary.com/browse/" . lcfirst($word) . "?s=t' target='_blank' title='View definition'>" . $word . "</a>, ";
 	}
 	
@@ -345,12 +368,13 @@ function getTraits() {
 	
 }
 
-function getValues() {
+function getValues($count) {
 	
 	$text = "";
 	$values = file('lists/values.txt');
-	for ($t = 0; $t < 3; $t++) {
-		$word = trim($values[rand(0, count($values)-1)]);
+	$choices = getUniqueArrayChoices(0, count($values)-1, $count);
+	for ($t = 0; $t < $count; $t++) {
+		$word = trim($values[$choices[$t]]);
 		$text = $text . "<a href='http://www.dictionary.com/browse/" . lcfirst($word) . "?s=t' target='_blank' title='View definition'>" . $word . "</a>, ";
 	}
 	
@@ -362,8 +386,9 @@ function getLinesFromFile($file, $rows) {
 	
 	$text = "";
 	$values = file("lists/" . $file . ".txt");
+	$choices = getUniqueArrayChoices(0, count($values)-1, $rows);
 	for ($t = 0; $t < $rows; $t++) {
-		$word = ucfirst(trim($values[rand(0, count($values)-1)]));
+		$word = ucfirst(trim($values[$choices[$t]]));
 		if (substr($word, -1, 1) == ".") {
 			$word = substr($word, 0, strlen($word)-1);
 		}
@@ -425,7 +450,7 @@ function getEnvironment() {
 	$desktop_oss = ['Windows','macOS','Linux'];
 	$desktop_browsers = ['Chrome','Firefox','Opera','Internet Explorer','Edge'];
 	$desktop_devices = ['Desktop','Laptop'];
-	$mobile_oss = ['Android','iOS'];
+	$mobile_oss = ['Android','iOS','Windows'];
 	$mobile_browsers = ['Chrome','Opera'];
 	$mobile_devices = ['Phone','Tablet'];
 	$location = $locations[rand(0, count($locations)-1)];
@@ -466,6 +491,8 @@ function getEnvironment() {
 			$os = $mobile_oss[rand(0, count($mobile_oss)-1)];
 			if ($os == "iOS") {
 				$browser = "Safari";
+			} elseif ($os == "Windows") {
+				$browser = "Internet Explorer";
 			} else {
 				$browser = $mobile_browsers[rand(0, count($mobile_browsers)-1)];
 			}
@@ -521,10 +548,64 @@ function getGeography() {
 
 function getPet() {
 	
-	$pet = getLinesFromFile('animals', 1);
-	$name = generateForeName();
+	$pet_names = "";
+	$num_pets = rand(1, 3);	
+	for ($p = 0; $p < $num_pets; $p++) {
+		$pet = getLinesFromFile('animals', 1);
+		$name = generateForeName();
+		$pet_name = $name . " (" . $pet . "), ";
+		$pet_names = $pet_names . $pet_name;
+	}
 	
-	return $pet . " (" . $name . ")";
+	$pet_names = substr($pet_names, 0, strlen($pet_names)-2);
+	
+	return $pet_names;
+	
+}
+
+function getDomainExperience($experience) {
+	
+	// Factor list of experience levels based on user experience to get lowest level to rand from
+	$expertise = file('lists/expertise.txt');
+	
+	$min_exp = ceil(($experience/48)* count($expertise));
+	$max_exp = $min_exp + 5;
+	if ($max_exp >= count($expertise)) {
+		$max_exp = count($expertise)-1;
+	}
+	$expertise_level = rand($min_exp, $max_exp);
+	
+	return $expertise[$expertise_level];
+	
+}
+	
+function getUniqueArrayChoices($min, $max, $count) {
+	
+	// Get value
+	$array = array();
+	
+	while (count($array) < $count) {
+		$value = rand($min, $max);
+		if (isValueInArray($value, $array) == false) {
+			array_push($array, $value);
+		}
+	}
+	
+	return $array;
+	
+}
+
+function isValueInArray($value, $array) {
+	
+	$valueIsInArray = false;
+	
+	for ($v = 0; $v < count($array); $v++) {
+		if ($array[$v] == $value) {
+			$valueIsInArray = true;
+		}
+	}
+	
+	return $valueIsInArray;
 	
 }
 	
