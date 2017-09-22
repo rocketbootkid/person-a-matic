@@ -1,0 +1,101 @@
+1.1.1. Diseases caused by beryllium or its compounds
+1.1.2. Diseases caused by cadmium or its compounds
+1.1.3. Diseases caused by phosphorus or its compounds
+1.1.4. Diseases caused by chromium or its compounds
+1.1.5. Diseases caused by manganese or its compounds
+1.1.6. Diseases caused by arsenic or its compounds
+1.1.7. Diseases caused by mercury or its compounds
+1.1.8. Diseases caused by lead or its compounds
+1.1.9. Diseases caused by fluorine or its compounds
+1.1.10. Diseases caused by carbon disulfide
+1.1.11. Diseases caused by halogen derivatives of aliphatic or aromatic hydrocarbons
+1.1.12. Diseases caused by benzene or its homologues
+1.1.13. Diseases caused by nitro- and amino-derivatives of benzene or its homologues
+1.1.14. Diseases caused by nitroglycerine or other nitric acid esters
+1.1.15. Diseases caused by alcohols, glycols or ketones
+1.1.16. Diseases caused by asphyxiants like carbon monoxide, hydrogen sulfide, hydrogen cyanide or its derivatives
+1.1.17. Diseases caused by acrylonitrile
+1.1.18. Diseases caused by oxides of nitrogen
+1.1.19. Diseases caused by vanadium or its compounds
+1.1.20. Diseases caused by antimony or its compounds
+1.1.21. Diseases caused by hexane
+1.1.22. Diseases caused by mineral acids
+1.1.23. Diseases caused by pharmaceutical agents
+1.1.24. Diseases caused by nickel or its compounds
+1.1.25. Diseases caused by thallium or its compounds
+1.1.26. Diseases caused by osmium or its compounds
+1.1.27. Diseases caused by selenium or its compounds
+1.1.28. Diseases caused by copper or its compounds
+1.1.29. Diseases caused by platinum or its compounds
+1.1.30. Diseases caused by tin or its compounds
+1.1.31. Diseases caused by zinc or its compounds
+1.1.32. Diseases caused by phosgene
+1.1.33. Diseases caused by corneal irritants like benzoquinone
+1.1.34. Diseases caused by ammonia
+1.1.35. Diseases caused by isocyanates
+1.1.36. Diseases caused by pesticides
+1.1.37. Diseases caused by sulphur oxides
+1.1.38. Diseases caused by organic solvents
+1.1.39. Diseases caused by latex or latex-containing products
+1.1.40. Diseases caused by chlorine
+1.1.41. Diseases caused by other chemical agents at work not mentioned in the preceding
+1.2.1. Hearing impairment caused by noise
+1.2.2. Diseases caused by vibration (disorders of muscles, tendons, bones, joints, peripheral blood vessels or peripheral nerves)
+1.2.3. Diseases caused by compressed or decompressed air
+1.2.4. Diseases caused by ionizing radiations
+1.2.5. Diseases caused by optical (ultraviolet, visible light, infrared) radiations including laser
+1.2.6. Diseases caused by exposure to extreme temperatures
+1.3.1. Brucellosis
+1.3.2. Hepatitis viruses
+1.3.3. Human immunodeficiency virus (HIV)
+1.3.4. Tetanus
+1.3.5. Tuberculosis
+1.3.6. Toxic or inflammatory syndromes associated with bacterial or fungal contaminants
+1.3.7. Anthrax
+1.3.8. Leptospirosis
+2.1.1. Pneumoconioses caused by fibrogenic mineral dust (silicosis, anthraco-silicosis, asbestosis)
+2.1.2. Silicotuberculosis
+2.1.3. Pneumoconioses caused by non-fibrogenic mineral dust
+2.1.4. Siderosis
+2.1.5. Bronchopulmonary diseases caused by hard-metal dust
+2.1.6. Bronchopulmonary diseases caused by dust of cotton (byssinosis), flax, hemp, sisal or sugar cane (bagassosis)
+2.1.7. Asthma caused by recognized sensitizing agents or irritants inherent to the work process
+2.1.8. Extrinsic allergic alveolitis caused by the inhalation of organic dusts or microbially contaminated aerosols, arising from work activities
+2.1.9. Chronic obstructive pulmonary diseases caused by inhalation of coal dust, dust from stone quarries, wood dust, dust from cereals and agricultural work, dust in animal stables, dust from textiles, and paper dust, arising from work activities
+2.1.10. Diseases of the lung caused by aluminium 2.1.11. Upper airways disorders caused by recognized sensitizing agents or irritants inherent to the work process
+2.1.12. Other respiratory diseases not mentioned in the preceding items where a direct link is established scientifically, or determined by methods appropriate to national conditions and practice, between the exposure to risk factors arising
+from work activities and the disease(s) contracted by the worker 
+2.2.1. Allergic contact dermatoses and contact urticaria caused by other recognized allergy-provoking agents arising from work activities not included in other items 
+2.2.2. Irritant contact dermatoses caused by other recognized irritant agents arising from work activities not included in other items
+2.2.3. Vitiligo caused by other recognized agents arising from work activities not included in other items
+2.2.4. Other skin diseases caused by physical, chemical or biological agents at work not included under other items where a direct link is established scientifically, or determined by methods appropriate to national conditions and practice, between the exposure to risk factors arising from work activities and the skin disease(s) contracted by the worker
+2.3.1. Radial styloid tenosynovitis due to repetitive movements, forceful exertions and extreme postures of the wrist
+2.3.2. Chronic tenosynovitis of hand and wrist due to repetitive movements, forceful exertions and extreme postures of the wrist
+2.3.3. Olecranon bursitis due to prolonged pressure of the elbow region
+2.3.4. Prepatellar bursitis due to prolonged stay in kneeling position
+2.3.5. Epicondylitis due to repetitive forceful work
+2.3.6. Meniscus lesions following extended periods of work in a kneeling or squatting position
+2.3.7. Carpal tunnel syndrome due to extended periods of repetitive forceful work, work involving vibration, extreme postures of the wrist, or a combination of the three
+2.3.8. Other musculoskeletal disorders not mentioned in the preceding items where a direct link is established scientifically, or determined by methods appropriate to national conditions and practice, between the exposure to risk factors arising from work activities and the musculoskeletal disorder(s) contracted by the worker
+2.4.1. Post-traumatic stress disorder
+3.1. Cancer caused by the following agents
+3.1.1. Asbestos
+3.1.2. Benzidine and its salts
+3.1.3. Bis-chloromethyl ether (BCME)
+3.1.4. Chromium VI compounds
+3.1.5. Coal tars, coal tar pitches or soots
+3.1.6. Beta-naphthylamine
+3.1.7. Vinyl chloride
+3.1.8. Benzene
+3.1.9. Toxic nitro- and amino-derivatives of benzene or its homologues
+3.1.10. Ionizing radiations
+3.1.11. Tar, pitch, bitumen, mineral oil, anthracene, or the compounds, products or residues of these substances
+3.1.12. Coke oven emissions
+3.1.13. Nickel compounds
+3.1.14. Wood dust
+3.1.15. Arsenic and its compounds
+3.1.16. Beryllium and its compounds
+3.1.17. Cadmium and its compounds
+3.1.18. Erionite
+3.1.19. Ethylene oxide
+3.1.20. Hepatitis B virus (HBV) and hepatitis C virus (HCV)
