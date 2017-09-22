@@ -66,6 +66,8 @@ function displayPersonaDemographics() {
 			echo "<div class='line'><div class='linetitle'>Crimes</div><div class='linecontent'>" . $crime_text . "</div></div>";
 		}
 		
+		
+		
 	echo "</div>";
 		
 	echo "<div class='section'>";
@@ -91,6 +93,14 @@ function displayPersonaDemographics() {
 		echo "<div class='line'><div class='linetitle'>Phobias</div><div class='linecontent'>" . $values . "</div></div>";
 		
 	echo "</div>";
+	
+	echo "<div class='section'>";
+
+		// Pets
+		echo "<div class='line'><div class='linetitle'>Pet</div><div class='linecontent'>" . getPet() . "</div></div>";
+		
+	echo "</div>";
+
 	
 	return [$personaAge, $education[2], $sentence];
 	
@@ -118,6 +128,7 @@ function displayPersonaProfile($age, $experience, $sentence) {
 	
 	echo "<div class='section'>";
 	
+		echo "<div class='line'><div class='linetitle'>Geography</div><div class='linecontent'>" . getGeography() . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Location</div><div class='linecontent'>" . $office_details[0] . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Device</div><div class='linecontent'>" . $office_details[1] . " | " . $office_details[2] . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Browser</div><div class='linecontent'>" . $office_details[3] . "</div></div>";
@@ -497,4 +508,24 @@ function getCrime($personaAge) {
 	
 }
 
+function getGeography() {
+	
+	$locale = ['Urban','Suburban','Rural'];
+	$country = getLinesFromFile('countries',1);
+	$details = explode(",", $country);
+	$country = $details[0];
+	
+	return $locale[rand(0, count($locale)-1)] . " " . $country;
+	
+}
+
+function getPet() {
+	
+	$pet = getLinesFromFile('animals', 1);
+	$name = generateForeName();
+	
+	return $pet . " (" . $name . ")";
+	
+}
+	
 ?>
