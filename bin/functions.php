@@ -24,7 +24,13 @@ function displayPersonaDemographics() {
 		$personaAge = $dob_age[1];
 		
 		// Nationality
-		echo "<div class='line'><div class='linetitle'>Nationality</div><div class='linecontent'><img src='images/flags/" . strtolower($details[3]) . ".png' style='margin-top: -5px;'> " . getNationality($details[3]) . "</div></div>";	
+		echo "<div class='line'><div class='linetitle'>Nationality</div><div class='linecontent'><img src='images/flags/" . strtolower($details[3]) . ".png' style='margin-top: -5px;'> " . getNationality($details[3]) . "</div></div>";
+
+		$geography = getGeography();
+		
+		$languages = getLanguages($details[3], $geography);
+		echo "<div class='line'><div class='linetitle'>Languages</div><div class='linecontent'>" . $languages . "</div></div>";
+		
 	
 	echo "</div>";
 	
@@ -39,7 +45,7 @@ function displayPersonaDemographics() {
 		echo "<div class='line'><div class='linetitle'>Marital Status</div><div class='linecontent'>" . $marital_text . "</div></div>";
 		
 		// Children
-		$children = getChildren($marital_status[1]);
+		$children = getChildren($marital_status[1], $personaAge);
 		if ($children[0] == 0) {
 			$kids_text = "None";
 		} elseif ($children[0] == 1) {
@@ -112,11 +118,16 @@ function displayPersonaDemographics() {
 	echo "</div>";
 
 	
-	return [$personaAge, $education[2], $sentence];
+	return [$personaAge, $education[2], $sentence, $geography];
 	
 }
 
-function displayPersonaProfile($age, $experience, $sentence) {
+function displayPersonaProfile($details) {
+	
+	$age = $details[0];
+	$experience = $details[1];
+	$sentence = $details[2];
+	$geography = $details[3];
 	
 	echo "<div class='section'>";
 	
@@ -142,7 +153,7 @@ function displayPersonaProfile($age, $experience, $sentence) {
 	
 	echo "<div class='section'>";
 	
-		echo "<div class='line'><div class='linetitle'>Geography</div><div class='linecontent'>" . getGeography() . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Geography</div><div class='linecontent'>" . $geography . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Location</div><div class='linecontent'>" . $office_details[0] . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Device</div><div class='linecontent'>" . $office_details[1] . " | " . $office_details[2] . "</div></div>";
 		echo "<div class='line'><div class='linetitle'>Browser</div><div class='linecontent'>" . $office_details[3] . "</div></div>";
@@ -277,19 +288,33 @@ function getMaritalStatus($age, $title) {
 	
 }
 
-function getChildren($length_of_marriage) {
+function getChildren($length_of_marriage, $parent_age) {
 	
 	$max_kids = 4;
 	
-	if ($length_of_marriage < $max_kids) {
-		$max = $length_of_marriage - 2;
-	} else {
-		$max = $max_kids;
+	if ($length_of_marriage > 0) { // Married
+		if ($length_of_marriage < $max_kids) {
+			$max = $length_of_marriage - 2;
+		} else {
+			$max = $max_kids;
+		}
+	} else { // Not married
+		if (rand(1, 10) > 7) {
+			$max = $parent_age - 24;
+			if ($max > $max_kids) {
+				$max = $max_kids;
+			}
+		} else {
+			$max = 0;
+		}
+	}
+	if ($length_of_marriage == 0) {
+		$length_of_marriage = $parent_age - 24;
 	}
 	
 	$numKids = rand(0, $max);
 	$kid_details = "";
-	$max_age = $length_of_marriage;
+	$max_age = $length_of_marriage-1;
 	for ($k = 0; $k < $numKids; $k++) {
 		$kid_age = 0;
 		$name = generateForeName();
@@ -570,8 +595,11 @@ function getDomainExperience($experience) {
 	
 	$min_exp = ceil(($experience/48)* count($expertise));
 	$max_exp = $min_exp + 5;
-	if ($max_exp >= count($expertise)) {
-		$max_exp = count($expertise)-1;
+	if ($max_exp > 13) {
+		$max_exp = 13;
+	}
+	if ($min_exp > 13) {
+		$min_exp = 13;
 	}
 	$expertise_level = rand($min_exp, $max_exp);
 	
@@ -606,6 +634,43 @@ function isValueInArray($value, $array) {
 	}
 	
 	return $valueIsInArray;
+	
+}
+	
+function getLanguages($country_code, $work_country) {
+	
+	$language = array();
+	$text = "";
+	$work_country = explode(" ", $work_country);
+	$work_country = trim($work_country[1]);
+	
+	// Get Language from Nationality
+	$countries = file('lists/countries.txt');
+	foreach ($countries as $country) {
+		$country_details = explode(",", $country);
+		if (trim($country_details[2]) == trim($country_code)) {
+			array_push($language, trim($country_details[3]));
+		}
+		if ($country_details[0] == $work_country) {
+			array_push($language, trim($country_details[3]));
+		}
+	}
+	
+	$language = array_unique($language);
+	for ($l = 0; $l < count($language); $l++){
+		if ($language[$l] <> "") {
+		$text = $text . $language[$l] . ", ";
+		}
+	}
+	
+	$text = trimTrailingComma($text);
+	return $text;
+	
+}
+
+function trimTrailingComma($text) {
+	
+	return substr($text, 0, strlen($text)-2);
 	
 }
 	
