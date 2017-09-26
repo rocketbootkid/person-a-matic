@@ -2,7 +2,7 @@ Afghanistan,Afghan,AF,Dari
 Albania,Albanian,AL,Albanian
 Algeria,Algerian,DZ,Arabic
 America,American,US,English
-Andorra,Andorran,AD,Catalan
+Andorra,Andorran,AD,Catalán
 Angola,Angolan,AO,Portuguese
 Argentina,Argentinean,AR,Spanish
 Armenia,Armenian,AM,Armenian
@@ -19,13 +19,13 @@ Benin,Beninese,BJ,French
 Bermuda,Bermudan,BM,English
 Bhutan,Bhutanese,BT,Dzongkha
 Bolivia,Bolivian,BO,Spanish
-Bosnia and Herzegovina,Bosnian,BA,Bosnian
+Bosnia and Herzegovina,Bosnian,BA,"Bosnian, Croatian, Serbian"
 Botswana,Botswanan,BW,Setswana
 Brazil,Brazilian,BR,Portuguese
 Brunei,Bruneian,BN,Malay
 Bulgaria,Bulgarian,BG,Bulgarian
 Burkina Faso,Burkinese,BF,French
-Burundi,Burundian,BI,Kirundi
+Burundi,Burundian,BI,"Kirundi, French"
 Cambodia,Cambodian,KH,Khmer
 Cameroon,Cameroonian,CM,French
 Canada,Canadian,CA,English
@@ -40,7 +40,7 @@ Comoros,Comoran,KM,Arabic
 Democratic Republic of the Congo,Congolese,ZR,French
 Republic of the Congo,Congolese,CG,French
 Costa Rica,Costa Rican,CR,Spanish
-Croatia,Croatian,HR,Croatian
+Croatia,Croatian,HR,Croatian 96%
 Cuba,Cuban,CU,Spanish
 Cyprus,Cypriot,CY,Greek
 Denmark,Danish,DK,Danish
@@ -63,7 +63,7 @@ Grenada,Grenadian,GD,English
 Guatemala,Guatemalan,GT,Spanish
 Guinea,Guinean,GN,French
 Guyana,Guyanese,GY,English
-Haiti,Haitian,HT,Creole
+Haiti,Haitian,HT,"Creole, French"
 Honduras,Honduran,HN,Spanish
 Hungary,Hungarian,HU,Magyar
 Iceland,Icelandic,IS,Icelandic
@@ -91,7 +91,7 @@ Libya,Libyan,LY,Arabic
 Liechtenstein,Liechtensteiner,LI,German
 Lithuania,Lithuanian,LT,Lithuanian
 Luxembourg,Luxembourger,LU,Luxermbourgish
-Madagascar,Madagascan,MG,Malagasy
+Madagascar,Madagascan,MG,"Malagasy, French"
 Malawi,Malawian,MW,Chichewa
 Malaysia,Malaysian,MY,Bahasa Melayu
 Maldives,Maldivian,MV,Maldivian Dhivehi
@@ -105,13 +105,13 @@ Monaco,Monacan,MC,French
 Mongolia,Mongolian,MN,Mongolian
 Morocco,Moroccan,MA,Arabic
 Mozambique,Mozambiquean,MZ,Portuguese
-Namibia,Namibian,NA,Afrikaans
+Namibia,Namibian,NA,"English, Afrikaans"
 Nepal,Nepalese,NP,Neplai
 Netherlands,Dutch,NL,Dutch
 New Zealand,New Zealander,NZ,English
 Nicaragua,Nicaraguan,NI,Spanish
 Nigeria,Nigerian,NG,English
-Norway,Norwegian,NO,Norwegian
+Norway,Norwegian,NO,"Bokmål Norwegian, Nynorsk Norwegian (both official); small Sami- and Finnish-speaking minorities (Sami is official in six municipalities)"
 Oman,Omanian,OM,Arabic
 Oman,Omanis,OM,Arabic
 Pakistan,Pakistani,PK,Urdu
@@ -162,5 +162,3 @@ Yemen,Yemeni,YE,Arabic
 Yugoslavia,Yugoslavian,YU,Serbo-Croatian
 Zambia,Zambian,ZM,English
 Zimbabwe,Zimbabwean,ZW,English
-Great Britain,British,UK,English
-United Kingdom,British,GB,English

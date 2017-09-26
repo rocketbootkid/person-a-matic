@@ -87,16 +87,24 @@ function displayPersonaDemographics() {
 		echo "<div class='line'><div class='linetitle'>Values</div><div class='linecontent'>" . $values . "</div></div>";
 		
 		// Likes
-		$values = getLinesFromFile('likes', 3);
+		$values = getLinesFromFile('likes', 1);
 		echo "<div class='line'><div class='linetitle'>Likes</div><div class='linecontent'>" . $values . "</div></div>";
 		
 		// Dislikes
-		$values = getLinesFromFile('dislikes', 3);
+		$values = getLinesFromFile('dislikes', 1);
 		echo "<div class='line'><div class='linetitle'>Dislikes</div><div class='linecontent'>" . $values . "</div></div>";
 
 		// Phobias
 		$values = getPhobia(rand(1,4));
-		echo "<div class='line'><div class='linetitle'>Phobias</div><div class='linecontent'>" . $values . "</div></div>";
+		echo "<div class='line'><div class='linetitle'>Phobias</div><div class='linecontent'>" . $values . 
+		"</div></div>";
+
+		// Illness
+		if (rand(0, 20) == 20) {
+			$values = getLinesFromFile('illnesses', 1);
+			echo "<div class='line'><div class='linetitle'>Work Illness</div><div class='linecontent'>" . $values . 
+		"</div></div>";
+		}
 		
 	echo "</div>";
 	
@@ -114,6 +122,10 @@ function displayPersonaDemographics() {
 
 		// Social Media
 		echo "<div class='line'><div class='linetitle'>Social Media</div><div class='linecontent'>" . getLinesFromFile('social', rand(1, 4)) . "</div></div>";
+		
+		// Sense of Humour
+		$values = getLinesFromFile('humour',1);
+		echo "<div class='line'><div class='linetitle'>Humour</div><div class='linecontent'>" . $values . "</div></div>";
 		
 	echo "</div>";
 
@@ -141,11 +153,25 @@ function displayPersonaProfile($details) {
 			$experience = 1;
 		}
 	
+		// Experience
 		echo "<div class='line'><div class='linetitle'>Experience</div><div class='linecontent'>" . $experience . " years</div></div>";
+		
+		// Company
 		echo "<div class='line'><div class='linetitle'>Company</div><div class='linecontent'>" . getCompany() . "</div></div>";
-		echo "<div class='line'><div class='linetitle'>Seniority</div><div class='linecontent'>" . getRole($experience) . "</div></div>";
+		
+		// Role
+		$role = getRole($experience);
+		echo "<div class='line'><div class='linetitle'>Seniority</div><div class='linecontent'>" . $role . "</div></div>";
+		
+		// Domain
 		echo "<div class='line'><div class='linetitle'>Domain</div><div class='linecontent'>" . getLinesFromFile('domains', 1) . "</div></div>";
+		
+		// Domain Experience
 		echo "<div class='line'><div class='linetitle'>Knowledge</div><div class='linecontent'>" . getDomainExperience($experience) . "</div></div>";
+		
+		// Worker Type
+		$type = getWorkerType($experience, $role);
+		echo "<div class='line'><div class='linetitle'>Employee Type</div><div class='linecontent'><abbr title='" . $type[1] . "'>" . $type[0] . "</abbr></div></div>";
 
 	echo "</div>";
 
@@ -153,9 +179,16 @@ function displayPersonaProfile($details) {
 	
 	echo "<div class='section'>";
 	
+		// Geography
 		echo "<div class='line'><div class='linetitle'>Geography</div><div class='linecontent'>" . $geography . "</div></div>";
+		
+		// Location
 		echo "<div class='line'><div class='linetitle'>Location</div><div class='linecontent'>" . $office_details[0] . "</div></div>";
+		
+		// Device
 		echo "<div class='line'><div class='linetitle'>Device</div><div class='linecontent'>" . $office_details[1] . " | " . $office_details[2] . "</div></div>";
+		
+		// Browser
 		echo "<div class='line'><div class='linetitle'>Browser</div><div class='linecontent'>" . $office_details[3] . "</div></div>";
 		
 		// Assistive Tech
@@ -167,6 +200,12 @@ function displayPersonaProfile($details) {
 		
 		echo "<div class='line'><div class='linetitle'>Tech Savvy</div><div class='linecontent'>" . getLinesFromFile('expertise', 1) . "</div></div>";
 
+	echo "</div>";
+
+	echo "<div class='section'>";
+	
+		echo "<div class='line'><div class='linetitle'>Brings cake</div><div class='linecontent'>" . getLinesFromFile('cakes', 1) . "</div></div>";
+	
 	echo "</div>";
 	
 }
@@ -671,6 +710,15 @@ function getLanguages($country_code, $work_country) {
 function trimTrailingComma($text) {
 	
 	return substr($text, 0, strlen($text)-2);
+	
+}
+	
+function getWorkerType($experience, $role) {
+	
+	$type = getLinesFromFile('workertype',1);
+	$details = explode("|", $type);
+	
+	return $details;
 	
 }
 	
