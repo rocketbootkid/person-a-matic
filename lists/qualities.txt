@@ -1,0 +1,17 @@
+Functionality
+Reliability
+Usability
+Efficiency
+Maintainability
+Portability
+Usability
+Integrity
+Efficiency
+Security
+Safety
+Performance
+Testability
+Flexibility
+Extensibility
+Scalability
+Modularity
