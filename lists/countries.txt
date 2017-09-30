@@ -106,7 +106,7 @@ Mongolia,Mongolian,MN,Mongolian
 Morocco,Moroccan,MA,Arabic
 Mozambique,Mozambiquean,MZ,Portuguese
 Namibia,Namibian,NA,Afrikaans
-Nepal,Nepalese,NP,Neplai
+Nepal,Nepalese,NP,Nepali
 Netherlands,Dutch,NL,Dutch
 New Zealand,New Zealander,NZ,English
 Nicaragua,Nicaraguan,NI,Spanish

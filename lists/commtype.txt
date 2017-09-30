@@ -1,0 +1,6 @@
+Face-to-face
+Email
+Phone
+Text
+Fax
+Teleconference

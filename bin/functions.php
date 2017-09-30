@@ -18,7 +18,7 @@ function displayPersonaDemographics() {
 	echo "<div class='section'>";
 	
 		// DOB / Age
-		$dob_age = generateDOBAge();
+		$dob_age = generateDOBAge($details[6]);
 		echo "<div class='line'><div class='linetitle'>Born</div><div class='linecontent'>" . $dob_age[0] . " (" . $dob_age[1] . ")</div></div>";
 		
 		$personaAge = $dob_age[1];
@@ -38,7 +38,7 @@ function displayPersonaDemographics() {
 		// Marital Status
 		$marital_status = getMaritalStatus($dob_age[1], $details[5]);
 		if ($marital_status[0] == "Married") {
-			$marital_text = $marital_status[0] . " for " . $marital_status[1] . " year(s)";
+			$marital_text = $marital_status[0] . " for " . $marital_status[1] . " year(s) to " . $marital_status[2];
 		} else {
 			$marital_text = $marital_status[0];
 		}
@@ -69,7 +69,7 @@ function displayPersonaDemographics() {
 			$crime_details = getCrime($personaAge);
 			$crime_text = $crime_details[0];
 			$sentence = $crime_details[1];
-			echo "<div class='line'><div class='linetitle'>Crimes</div><div class='linecontent'>" . $crime_text . "</div></div>";
+			echo "<div class='line'><div class='linetitle'><span title='Criminal Record'>Crimes</span></div><div class='linecontent'>" . $crime_text . "</div></div>";
 		}
 		
 		
@@ -123,10 +123,6 @@ function displayPersonaDemographics() {
 		// Social Media
 		echo "<div class='line'><div class='linetitle'>Social Media</div><div class='linecontent'>" . getLinesFromFile('social', rand(1, 4)) . "</div></div>";
 		
-		// Sense of Humour
-		$values = getLinesFromFile('humour',1);
-		echo "<div class='line'><div class='linetitle'>Humour</div><div class='linecontent'>" . $values . "</div></div>";
-		
 	echo "</div>";
 
 	
@@ -171,7 +167,7 @@ function displayPersonaProfile($details) {
 		
 		// Worker Type
 		$type = getWorkerType($experience, $role);
-		echo "<div class='line'><div class='linetitle'>Employee Type</div><div class='linecontent'><abbr title='" . $type[1] . "'>" . $type[0] . "</abbr></div></div>";
+		echo "<div class='line'><div class='linetitle'><a href='https://www.forbes.com/sites/stevefaktor/2012/11/15/feature-the-9-corporate-personality-types-how-to-inspire-them-to-innovate/#49a9db872753' target='_blank' title='Open source article'>Employee Type</a></div><div class='linecontent'><a href='' title='" . $type[1] . "'>" . $type[0] . "</a></div></div>";
 
 	echo "</div>";
 
@@ -204,7 +200,26 @@ function displayPersonaProfile($details) {
 
 	echo "<div class='section'>";
 	
-		echo "<div class='line'><div class='linetitle'>Brings cake</div><div class='linecontent'>" . getLinesFromFile('cakes', 1) . "</div></div>";
+		// Communication Styles
+		echo "<div class='line'><div class='linetitle'><span title='Communication Style'>Comm. Style</a></div><div class='linecontent'>" . getLinesFromFile('commstyles',1) . "</div></div>";
+
+		// Preferred Medium
+		echo "<div class='line'><div class='linetitle'><span title='Preferred communication type'>Pref. Comm.</a></div><div class='linecontent'>" . getLinesFromFile('commtype',1) . "</div></div>";
+
+		// Important Software Qualities
+		echo "<div class='line'><div class='linetitle'><span title='Values these software qualities'>S/w Values</a></div><div class='linecontent'>" . getLinesFromFile('qualities',3) . "</div></div>";
+		
+	echo "</div>";
+	
+	echo "<div class='section'>";
+	
+		// Sense of Humour
+		$values = getLinesFromFile('humour',1);
+		echo "<div class='line'><div class='linetitle'>Humour</div><div class='linecontent'>" . $values . "</div></div>";
+		
+		// Cake
+		$cake = getCake();
+		echo "<div class='line'><div class='linetitle'>Brings cake</div><div class='linecontent'>" . $cake . "</div></div>";
 	
 	echo "</div>";
 	
@@ -222,14 +237,24 @@ function generateForeName() {
 	
 }
 
-function generateDOBAge() {
+function generateDOBAge($dob) {
 	
+	/*
 	$min = strtotime("70 years ago");
 	$max = strtotime("22 years ago");
 
 	$rand_time = mt_rand($min, $max);
 
 	$birth_date = date('d/m/Y', $rand_time);
+	
+	*/
+	
+	// Alternative, from randomuser.me API
+	$dob_date_time = explode(" ", $dob);
+	$dob = $dob_date_time[0];
+	$dob_bits = explode("-", $dob);
+	$birth_date = $dob_bits[2] . "/" . $dob_bits[1] . "/" . $dob_bits[0];
+	
 	$age = calculateAge($birth_date);
 	
 	return [$birth_date, $age];
@@ -266,8 +291,9 @@ function getUserDetails() {
 	$nationality = $json->results[0]->nat;
 	$image = $json->results[0]->picture->large;	
 	$title = ucwords($json->results[0]->name->title);	
+	$dob = $json->results[0]->dob;
 	
-	return [$gender, $forename, $surname, $nationality, $image, $title];
+	return [$gender, $forename, $surname, $nationality, $image, $title, $dob];
 	
 }
 
@@ -323,7 +349,18 @@ function getMaritalStatus($age, $title) {
 		$duration = 0;
 	}
 	
-	return [$status, $duration];
+	$spouse = getSpouse($age);
+	
+	return [$status, $duration, $spouse];
+	
+}
+
+function getSpouse($age) {
+	
+	$spouse_name = generateForeName();
+	$spouse_age = rand($age-4, $age+4);
+	
+	return $spouse_name . " (" . $spouse_age . ")";
 	
 }
 
@@ -337,6 +374,9 @@ function getChildren($length_of_marriage, $parent_age) {
 		} else {
 			$max = $max_kids;
 		}
+	} elseif ($length_of_marriage <= 6 && $length_of_marriage > 0) {
+		$max = 3;
+	
 	} else { // Not married
 		if (rand(1, 10) > 7) {
 			$max = $parent_age - 24;
@@ -358,9 +398,16 @@ function getChildren($length_of_marriage, $parent_age) {
 		$kid_age = 0;
 		$name = generateForeName();
 		$min_age = $max_age - 4;
+		if ($min_age < 1) {
+			$min_age = 1;
+		}
 		$max_age = $max_age - 1;
+		if ($max_age < $min_age) {
+			$max_age = $max_age + 1;
+		}
 		while ($kid_age <= 0) {
 			$kid_age = rand($min_age, $max_age);
+			//echo $min_age . ":" . $max_age . "<br/>";
 		}
 		$kid_details = $kid_details . ucfirst($name) . " (" . $kid_age . "), ";
 		$max_age = $kid_age;
@@ -617,7 +664,7 @@ function getPet() {
 	for ($p = 0; $p < $num_pets; $p++) {
 		$pet = getLinesFromFile('animals', 1);
 		$name = generateForeName();
-		$pet_name = $name . " (" . $pet . "), ";
+		$pet_name = $name . " (<a href='https://www.google.co.uk/search?q=" . $pet . "' target='_blank'>" . $pet . "</a>), ";
 		$pet_names = $pet_names . $pet_name;
 	}
 	
@@ -690,15 +737,17 @@ function getLanguages($country_code, $work_country) {
 		if (trim($country_details[2]) == trim($country_code)) {
 			array_push($language, trim($country_details[3]));
 		}
-		if ($country_details[0] == $work_country) {
+		if (trim($country_details[0]) == trim($work_country)) {
 			array_push($language, trim($country_details[3]));
 		}
 	}
 	
-	$language = array_unique($language);
-	for ($l = 0; $l < count($language); $l++){
+	$language = array_unique($language); // Removes duplicates
+	$language = array_values($language); // Reindexes array
+	
+	for ($l = 0; $l < count($language); $l++) {
 		if ($language[$l] <> "") {
-		$text = $text . $language[$l] . ", ";
+			$text = $text . $language[$l] . ", ";
 		}
 	}
 	
@@ -719,6 +768,14 @@ function getWorkerType($experience, $role) {
 	$details = explode("|", $type);
 	
 	return $details;
+	
+}
+	
+function getCake() {
+	
+	$cake = getLinesFromFile('cakes', 1);
+	
+	return "<a href='https://www.google.co.uk/search?q=" . $cake . "' target='_blank' title='Search for this cake'>" . $cake . "</a>";
 	
 }
 	

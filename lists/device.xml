@@ -1,0 +1,42 @@
+$devices = [
+	'Office', [
+		'Device', [
+			'Desktop', [
+				'Windows', ['Chrome','Firefox','Internet Explorer','Edge'],
+				'macOS', ['Safari'],
+				'Linux', ['Chrome','Firefox']
+			],
+			'Laptop', [
+				'Windows', ['Chrome','Firefox','Internet Explorer','Edge'],
+				'macOS', ['Safari'],
+				'Linux', ['Chrome','Firefox']
+			]
+		]
+	],
+	'Onsite', [
+		'Device', [
+			'Phone', [
+				'Android',[],
+				'iOS',[],
+				'Windows',[]
+			],
+			'Tablet', []
+		]
+	],
+	'Mobile', [
+		'Device', [
+			'Desktop', [],
+			'Laptop', []
+		]
+	]
+]
+
+
+
+	$locations = ['Office', 'Onsite', 'Mobile'];
+	$desktop_oss = ['Windows','macOS','Linux'];
+	$desktop_browsers = ['Chrome','Firefox','Opera','Internet Explorer','Edge'];
+	$desktop_devices = ['Desktop','Laptop'];
+	$mobile_oss = ['Android','iOS','Windows'];
+	$mobile_browsers = ['Chrome','Opera'];
+	$mobile_devices = ['Phone','Tablet'];
