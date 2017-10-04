@@ -28,6 +28,7 @@
 
 <canvas id="myCanvas" width="2000" height="1000"></canvas>
 <script src="js/background.js"></script>
+<script src="js/chart.js"></script>
 
 </body>
 </html>

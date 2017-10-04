@@ -30,7 +30,6 @@ function displayPersonaDemographics() {
 		
 		$languages = getLanguages($details[3], $geography);
 		echo "<div class='line'><div class='linetitle'>Languages</div><div class='linecontent'>" . $languages . "</div></div>";
-		
 	
 	echo "</div>";
 	
@@ -70,9 +69,7 @@ function displayPersonaDemographics() {
 			$crime_text = $crime_details[0];
 			$sentence = $crime_details[1];
 			echo "<div class='line'><div class='linetitle'><span title='Criminal Record'>Crimes</span></div><div class='linecontent'>" . $crime_text . "</div></div>";
-		}
-		
-		
+		}	
 		
 	echo "</div>";
 		
@@ -81,6 +78,10 @@ function displayPersonaDemographics() {
 		//Traits
 		$traits = getTraits('3');
 		echo "<div class='line'><div class='linetitle'>Traits</div><div class='linecontent'>" . $traits . "</div></div>";
+		
+		// Myres Briggs Type
+		$type = getLinesFromFile('myres', 1);
+		echo "<div class='line'><div class='linetitle'>Personality</div><div class='linecontent'><a href='http://www.humanmetrics.com/personality/" . $type . "' target='_blank'>" . $type . "</a></div></div>";
 
 		//Values
 		$values = getValues('3');
@@ -122,11 +123,22 @@ function displayPersonaDemographics() {
 
 		// Social Media
 		echo "<div class='line'><div class='linetitle'>Social Media</div><div class='linecontent'>" . getLinesFromFile('social', rand(1, 4)) . "</div></div>";
+	
+		// Sense of Humour
+		$values = getLinesFromFile('humour',1);
+		echo "<div class='line'><div class='linetitle'>Humour</div><div class='linecontent'>" . $values . "</div></div>";
+		
+		// Cake
+		$cake = getCake();
+		echo "<div class='line'><div class='linetitle'>Brings cake</div><div class='linecontent'>" . $cake . "</div></div>";
 		
 	echo "</div>";
 
+	$yoe = $education[2]; // years of experience
 	
-	return [$personaAge, $education[2], $sentence, $geography];
+	$details = [$personaAge, $yoe, $sentence, $geography];
+	
+	return $details;
 	
 }
 
@@ -213,13 +225,7 @@ function displayPersonaProfile($details) {
 	
 	echo "<div class='section'>";
 	
-		// Sense of Humour
-		$values = getLinesFromFile('humour',1);
-		echo "<div class='line'><div class='linetitle'>Humour</div><div class='linecontent'>" . $values . "</div></div>";
-		
-		// Cake
-		$cake = getCake();
-		echo "<div class='line'><div class='linetitle'>Brings cake</div><div class='linecontent'>" . $cake . "</div></div>";
+		echo "<canvas id='chartCanvas' width='490' height='300'></canvas>";
 	
 	echo "</div>";
 	
